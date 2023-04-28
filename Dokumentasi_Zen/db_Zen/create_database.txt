@@ -1,0 +1,32 @@
+create table users(
+	id_users serial primary key,
+	name_users varchar(255) not null,
+	password varchar(255) not null,
+	isadmin boolean
+);
+
+--membuat table product | contoh : Adidas puntero, nike white oldschools
+create table products(
+	id_product serial primary key,
+	id_product_category integer,
+	nama_product varchar(125) not null,
+	product_description varchar(255) not null,
+	price integer,
+	product_image varchar(255),
+	foreign key (id_product )references products_categories(id_product_category)
+	on update cascade on delete cascade
+);
+-- membuat table product category | contoh : Adidas
+create table products_categories(
+	id_product_category serial primary key,
+	nama_product_category varchar(125) not null
+);
+
+-- membuat table varians | contoh : sepatu sport , spatu oldschools
+create table varians(
+	id_varians serial primary key,
+	id_product integer,
+	nama_varians varchar(125) not null,
+	foreign key (id_varians )references products(id_product) 
+	on update cascade on delete cascade
+);
